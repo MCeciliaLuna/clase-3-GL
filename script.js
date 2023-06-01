@@ -37,17 +37,16 @@ const filterBooksByAuthor = (books, searchAuthor) => {
       );
     })
     .map((book) => book.title);
+  console.table(authorFilteredBooks);
+
   const inventedAuthor = "Cecilia";
   const authorChanged = authorFilteredBooks.map((title) => {
     return { title, author: inventedAuthor };
   });
-
-  console.table(authorFilteredBooks);
-  console.log(`\nAutor cambiado por "${inventedAuthor}":`);
+  console.log(`\nAutor "${searchAuthor}" cambiado por "${inventedAuthor}":`);
   console.table(authorChanged);
+
+  return authorFilteredBooks;
 };
 
 filterBooksByAuthor(books, searchAuthor);
-
-console.log(`\nEl array original NO HA SIDO MODIFICADO`);
-console.table(books);
