@@ -21,10 +21,7 @@ const books = [
   { title: "Las armas secretas", author: "Julio Cortázar" },
 ];
 
-console.table(books);
-
-let searchAuthor = "Carpentier";
-console.log(`\nLibros del autor "${searchAuthor}":`);
+let searchAuthor = "Borges";
 
 const filterBooksByAuthor = (books, searchAuthor) => {
   const authorFilteredBooks = books
@@ -36,17 +33,22 @@ const filterBooksByAuthor = (books, searchAuthor) => {
         authorFullName.split(" ").some((word) => word.includes(searchAuthor))
       );
     })
-    .map((book) => book.title);
-  console.table(authorFilteredBooks);
+        
+    return authorFilteredBooks;
+  };
+const filteredBooks = filterBooksByAuthor(books, searchAuthor);
+console.table(filteredBooks)
 
-  const inventedAuthor = "Cecilia";
-  const authorChanged = authorFilteredBooks.map((title) => {
-    return { title, author: inventedAuthor };
-  });
-  console.log(`\nAutor "${searchAuthor}" cambiado por "${inventedAuthor}":`);
-  console.table(authorChanged);
+//crear un nuevo array que contenga el nuevo autor sin afectar el original con {...book}
+filteredBooks.forEach(book => {
+  const newArray = {...book};
+  book.author = "Cecilia";
+})
 
-  return authorFilteredBooks;
-};
+console.table(books)
 
-filterBooksByAuthor(books, searchAuthor);
+
+  // const inventedAuthor = "Cecilia";
+  // const authorChanged = authorFilteredBooks.map((title) => {
+  //   return { title, author: inventedAuthor };
+  // });
